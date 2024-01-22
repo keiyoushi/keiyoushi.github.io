@@ -9,6 +9,12 @@ const pkgId = props.item.pkg.replace('eu.kanade.tachiyomi.extension.', '');
 const pkgName = props.item.name.split(': ')[1];
 const iconUrl = `${GITHUB_EXTENSION_BASE}/icon/${props.item.pkg}.png`;
 const apkUrl = `${GITHUB_EXTENSION_BASE}/apk/${props.item.apk}`;
+
+function handleAnalytics(apk: string) {
+  window.goatcounter?.count({
+    path: `/extensions/apk/${apk}`
+  })
+}
 </script>
 
 <template>
@@ -30,6 +36,7 @@ const apkUrl = `${GITHUB_EXTENSION_BASE}/apk/${props.item.apk}`;
       class="extension-download"
       title="Download APK"
       :download="item.apk"
+      @click="handleAnalytics(item.apk)"
     >
       ↓
     </a>
