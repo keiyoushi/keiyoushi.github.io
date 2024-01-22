@@ -1,16 +1,14 @@
 function mountGoatcounter(id: string) {
   // @ts-ignore
   if (window.goatcounter || window.location.hostname === 'localhost') {
-    return
+    return;
   }
 
-  const script = document.createElement("script")
+  const script = document.createElement("script");
 
-  script.dataset.goatcounter = `https://${id}.goatcounter.com/count`
-  script.async = true
-  script.src = "//gc.zgo.at/count.js"
-
-  window.goatcounter = { no_onload: true };
+  script.dataset.goatcounter = `https://${id}.goatcounter.com/count`;
+  script.async = true;
+  script.src = "//gc.zgo.at/count.js";
 
   document.head.appendChild(script)
 }
@@ -18,6 +16,6 @@ function mountGoatcounter(id: string) {
 export default function ({ id }: { id: string }) {
   // eslint-disable-next-line node/prefer-global/process
   if (process.env.NODE_ENV === 'production' && id && typeof window !== 'undefined') {
-    mountGoatcounter(id)
+    mountGoatcounter(id);
   }
 }
