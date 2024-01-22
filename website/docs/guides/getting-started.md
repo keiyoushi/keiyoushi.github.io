@@ -49,5 +49,5 @@ If you encounter difficulties while searching for a specific series, consider:
 
   > Example: **3-gatsu no Lion** instead of **Sangatsu no Lion**.
 
-- If you still cannot find the series, try searching for an extension for a website you've found in
+- If you still cannot find the series, try searching for a website's extension you've found in
 step 1 in the [extensions](/extensions/) list.
