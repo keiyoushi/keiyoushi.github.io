@@ -24,7 +24,7 @@ export default defineConfig({
   cleanUrls: true,
   transformHead: (context) => {
     context.head.push(['meta', { name: 'robots', content: 'noindex, nofollow' }]);
-    generateMeta(context, hostname);
+    context.head.push(...generateMeta(context, hostname));
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
