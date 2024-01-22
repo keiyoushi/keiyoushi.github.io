@@ -1,0 +1,49 @@
+{
+  "name": "keiyoushi-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev website",
+    "docs:build": "vitepress build website",
+    "docs:preview": "vitepress preview website"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@iconify-prerendered/vue-mdi": "^0.23.1702456985",
+    "@tanstack/vue-query": "^5.17.19",
+    "@vueuse/core": "^10.7.2",
+    "axios": "^1.6.5",
+    "element-plus": "^2.5.2",
+    "lodash.groupby": "^4.6.0",
+    "markdown-it-shortcode-tag": "^1.1.0",
+    "unplugin-element-plus": "^0.8.0"
+  },
+  "devDependencies": {
+    "@mdit/plugin-attrs": "^0.8.0",
+    "@mdit/plugin-figure": "^0.8.0",
+    "@mdit/plugin-img-lazyload": "^0.8.0",
+    "@mdit/plugin-img-mark": "^0.8.0",
+    "@mdit/plugin-img-size": "^0.8.0",
+    "@mdit/plugin-include": "^0.8.0",
+    "@types/lodash.groupby": "^4.6.9",
+    "@types/node": "^20.11.5",
+    "stylus": "^0.62.0",
+    "vite": "^5.0.12",
+    "vitepress": "1.0.0-rc.39",
+    "vitepress-plugin-tabs": "^0.5.0",
+    "vue": "^3.4.15"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "search-insights"
+      ]
+    }
+  }
+}

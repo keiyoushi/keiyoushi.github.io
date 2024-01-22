@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "jsx": "preserve",
+      "lib": ["esnext", "dom"],
+      "useDefineForClassFields": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "paths": {
+        "@/*": ["./website/.vitepress/*"]
+      },
+      "resolveJsonModule": true,
+      "strict": true,
+      "sourceMap": true,
+      "esModuleInterop": true,
+      "isolatedModules": true,
+      "skipLibCheck": true,
+      "typeRoots": [
+        "./node_modules/@types",
+        "./typings",
+      ]
+    },
+    "include": [
+      "typings/**/*.d.ts",
+      "website/**/*.vue",
+      "website/**/*.tsx",
+      "website/**/*.ts",
+      "website/.**/**/*.ts",
+      "website/.**/**/*.tsx",
+      "website/.**/**/*.vue"
+    ],
+    "exclude": ["**/node_modules/**", "dist/**"],
+    "extensions": [".js", ".ts", ".tsx", ".jsx", ".vue"],
+    "allowSyntheticDefaultImports": true
+  }
