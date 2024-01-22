@@ -16,11 +16,8 @@ next: false
 
     onMounted(() => {
         isAndroid.value = !!navigator.userAgent.match(/android/i);
+        decodedUrl.value = new URLSearchParams(window.location.search).get("url");    
 
-        const url = new URLSearchParams(window.location.search).get("url");
-        
-        decodedUrl.value = decodeURIComponent(url);
-        
         const reencodedUrl = encodeURIComponent(decodedUrl.value);
 
         if (isAndroid.value) {
