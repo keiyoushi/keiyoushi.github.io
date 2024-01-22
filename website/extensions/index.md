@@ -8,8 +8,8 @@ next: false
 ---
 
 <script setup lang="ts">
-  import AddRepoButton from "./.vitepress/theme/components/AddRepoButton.vue";
-  import ExtensionsWrapper from "./.vitepress/theme/components/Extensions/ExtensionsWrapper.vue";
+  import AddRepoButton from "../.vitepress/theme/components/AddRepoButton.vue";
+  import ExtensionsWrapper from "../.vitepress/theme/components/Extensions/ExtensionsWrapper.vue";
 </script>
 
 # Extensions
