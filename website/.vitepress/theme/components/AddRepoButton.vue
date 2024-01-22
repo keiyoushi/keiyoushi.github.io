@@ -33,7 +33,7 @@ function handleAnalytics() {
     <div class="action-buttons">
       <a
         class="action-button primary"
-        :href="`tachiyomi://add-repo?url=${GITHUB_EXTENSION_MIN_JSON}`"
+        :href="`tachiyomi://add-repo?url=${encodeURIComponent(GITHUB_EXTENSION_MIN_JSON)}`"
         @click="handleAnalytics"
       >
         <span class="text">Add repository</span>
