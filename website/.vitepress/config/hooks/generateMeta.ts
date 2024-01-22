@@ -9,7 +9,7 @@ function generateMeta(context: TransformContext, hostname: string) {
   head.push(['link', { rel: 'canonical', href: url }])
   head.push(['meta', { property: 'og:url', content: url }])
   head.push(['meta', { name: 'twitter:url', content: url }])
-  head.push(['meta', { name: 'twitter:card', content: 'summary_large_image' }])
+  // head.push(['meta', { name: 'twitter:card', content: 'summary_large_image' }])
 
   if (pageData.frontmatter.theme)
     head.push(['meta', { name: 'theme-color', content: pageData.frontmatter.theme }])
