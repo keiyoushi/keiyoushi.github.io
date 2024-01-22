@@ -5,8 +5,8 @@ import { watch } from 'vue';
 
 const route = useRoute();
 
-watch(() => route.path, (path, _) => {
-  window.goatcounter?.count?.({ path });
+watch(() => route.path, (path, referrer) => {
+  window.goatcounter?.count?.({ path, referrer });
 })
 </script>
 
