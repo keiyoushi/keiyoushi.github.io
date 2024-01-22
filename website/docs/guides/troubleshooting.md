@@ -93,7 +93,7 @@ Some sources intentionally have higher **Cloudflare** protection to deter apps l
 
 ### Dealing with Cloudflare looping
 Certain sources may employ more advanced **Cloudflare** protection, leading to WebView continuously reloading when bypassing using the above solution.
-If this occurs, try [acccessing the website via WebView](#accessing-websites-via-webview).
+If this occurs, try [accessing the website via WebView](#accessing-websites-via-webview).
 
 ### Changing your user agent
 A user agent string shares requester information with websites, potentially affecting **Cloudflare**'s bot detection.
