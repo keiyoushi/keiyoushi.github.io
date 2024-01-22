@@ -9,7 +9,7 @@ onMounted(() => {
 });
 
 function handleAnalytics() {
-  window.goatcounter?.count({
+  window.goatcounter?.count?.({
     path: "/#add-to-tachiyomi",
     title: "Add extension repository",
   });

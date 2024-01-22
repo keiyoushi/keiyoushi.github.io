@@ -6,6 +6,7 @@ import goatcounter from './plugin/goatcounter';
 
 import './styles/base.styl';
 import 'element-plus/theme-chalk/dark/css-vars.css';
+import Layout from './Layout.vue';
 
 export default {
   extends: DefaultTheme,
@@ -13,5 +14,6 @@ export default {
     app.use(VueQueryPlugin);
     enhanceAppWithTabs(app);
     goatcounter({ id: "keiyoushi" });
-  }
+  },
+  Layout,
 } satisfies Theme

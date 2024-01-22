@@ -11,7 +11,7 @@ const iconUrl = `${GITHUB_EXTENSION_BASE}/icon/${props.item.pkg}.png`;
 const apkUrl = `${GITHUB_EXTENSION_BASE}/apk/${props.item.apk}`;
 
 function handleAnalytics(apk: string) {
-  window.goatcounter?.count({
+  window.goatcounter?.count?.({
     path: `/extensions/apk/${apk}`
   })
 }

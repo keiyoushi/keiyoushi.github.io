@@ -10,6 +10,8 @@ function mountGoatcounter(id: string) {
   script.async = true
   script.src = "//gc.zgo.at/count.js"
 
+  window.goatcounter = { no_onload: true };
+
   document.head.appendChild(script)
 }
 

@@ -22,7 +22,7 @@ next: false
 
         if (isAndroid.value) {
             if (decodedUrl == GITHUB_EXTENSION_MIN_JSON) {
-                window.goatcounter?.count({
+                window.goatcounter?.count?.({
                     path: "/#add-to-tachiyomi",
                     title: "Add extension repository",
                 });
