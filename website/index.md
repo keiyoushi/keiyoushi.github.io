@@ -2,6 +2,9 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: "home"
 
+title: "Keiyoushi"
+description: "An unofficial repository of extensions for Tachiyomi and variants."
+
 hero:
   name: "Keiyoushi"
   text: ""
