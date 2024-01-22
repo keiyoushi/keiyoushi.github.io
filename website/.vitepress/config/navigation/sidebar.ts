@@ -2,7 +2,7 @@ import type { DefaultTheme } from 'vitepress';
 
 const sidebar: DefaultTheme.SidebarMulti = {
   '/add-repo': defaultSidebar(),
-  '/extensions': defaultSidebar(),
+  '/extensions/': defaultSidebar(),
   '/news': defaultSidebar(),
   '/docs/': defaultSidebar(),
 };
@@ -11,7 +11,7 @@ function defaultSidebar(): DefaultTheme.SidebarItem[] {
   return [
     {
       items: [
-        { text: 'Extensions', link: '/extensions' }
+        { text: 'Extensions', link: '/extensions/' }
       ],
     },
     {
