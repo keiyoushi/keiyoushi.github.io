@@ -54,36 +54,45 @@ function generateMeta(context: TransformContext, hostname: string) {
       },
     ])
   }
-  if (pageData.frontmatter.image) {
-    head.push([
+  head.push(
+    [
       'meta',
       {
         property: 'og:image',
-        content: `${hostname}/${pageData.frontmatter.image.replace(/^\//, '')}`,
+        content: `${hostname}/android-chrome-192x192.png`,
       },
-    ])
-    head.push([
-      'meta',
-      {
-        name: 'twitter:image',
-        content: `${hostname}/${pageData.frontmatter.image.replace(/^\//, '')}`,
-      },
-    ])
-  }
-  else {
-    const url = pageData.filePath.replace('index.md', '').replace('.md', '')
-    const imageUrl = `${url}/__og_image__/og.png`.replace(/\/\//g, '/').replace(/^\//, '')
+    ],
+  )
+  // if (pageData.frontmatter.image) {
+  //   head.push([
+  //     'meta',
+  //     {
+  //       property: 'og:image',
+  //       content: `${hostname}/${pageData.frontmatter.image.replace(/^\//, '')}`,
+  //     },
+  //   ])
+  //   head.push([
+  //     'meta',
+  //     {
+  //       name: 'twitter:image',
+  //       content: `${hostname}/${pageData.frontmatter.image.replace(/^\//, '')}`,
+  //     },
+  //   ])
+  // }
+  // else {
+  //   const url = pageData.filePath.replace('index.md', '').replace('.md', '')
+  //   const imageUrl = `${url}/__og_image__/og.png`.replace(/\/\//g, '/').replace(/^\//, '')
 
-    head.push(['meta', { property: 'og:image', content: `${hostname}/${imageUrl}` }])
-    head.push(['meta', { property: 'og:image:width', content: '1200' }])
-    head.push(['meta', { property: 'og:image:height', content: '628' }])
-    head.push(['meta', { property: 'og:image:type', content: 'image/png' }])
-    head.push(['meta', { property: 'og:image:alt', content: pageData.frontmatter.title }])
-    head.push(['meta', { name: 'twitter:image', content: `${hostname}/${imageUrl}` }])
-    head.push(['meta', { name: 'twitter:image:width', content: '1200' }])
-    head.push(['meta', { name: 'twitter:image:height', content: '628' }])
-    head.push(['meta', { name: 'twitter:image:alt', content: pageData.frontmatter.title }])
-  }
+  //   head.push(['meta', { property: 'og:image', content: `${hostname}/${imageUrl}` }])
+  //   head.push(['meta', { property: 'og:image:width', content: '1200' }])
+  //   head.push(['meta', { property: 'og:image:height', content: '628' }])
+  //   head.push(['meta', { property: 'og:image:type', content: 'image/png' }])
+  //   head.push(['meta', { property: 'og:image:alt', content: pageData.frontmatter.title }])
+  //   head.push(['meta', { name: 'twitter:image', content: `${hostname}/${imageUrl}` }])
+  //   head.push(['meta', { name: 'twitter:image:width', content: '1200' }])
+  //   head.push(['meta', { name: 'twitter:image:height', content: '628' }])
+  //   head.push(['meta', { name: 'twitter:image:alt', content: pageData.frontmatter.title }])
+  // }
   if (pageData.frontmatter.tag)
     head.push(['meta', { property: 'article:tag', content: pageData.frontmatter.tag }])
 
