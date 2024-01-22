@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress';
+import { defineConfig, loadEnv } from 'vitepress'
 import { attrs } from '@mdit/plugin-attrs';
 import { figure } from '@mdit/plugin-figure';
 import { imgLazyload } from '@mdit/plugin-img-lazyload';
@@ -10,9 +10,12 @@ import shortcodePlugin from 'markdown-it-shortcode-tag';
 import shortcodes from './config/shortcodes';
 import ElementPlus from 'unplugin-element-plus/vite';
 
-import { GITHUB_EXTENSION_MIN_JSON } from './config/constants';
+import generateMeta from './config/hooks/generateMeta';
 import nav from './config/navigation/nav';
 import sidebar from './config/navigation/sidebar';
+
+const env = loadEnv('', process.cwd());
+const hostname: string = env.VITE_HOSTNAME || 'http://localhost:4173';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -21,6 +24,7 @@ export default defineConfig({
   cleanUrls: true,
   transformHead: (context) => {
     context.head.push(['meta', { name: 'robots', content: 'noindex, nofollow' }]);
+    generateMeta(context, hostname);
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config

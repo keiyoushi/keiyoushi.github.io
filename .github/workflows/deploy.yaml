@@ -43,7 +43,7 @@ jobs:
 
       - name: Build with VitePress
         run: |
-          pnpm run docs:build
+          VITE_HOSTNAME="https://keiyoushi.github.io" pnpm run docs:build
           touch website/.vitepress/dist/.nojekyll
 
       - name: Upload artifact
