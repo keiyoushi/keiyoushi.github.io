@@ -17,8 +17,8 @@ Essential information to help you set up the extension repo.
 Uninstall all existing extensions. You will not get extension updates otherwise.
 
 ### Adding the repository
-For all modern variants of Tachiyomi (Tachiyomi, TachiyomiSY, TachiyomiJ2K, Mihon), click
-the button below to add the repository:
+For all modern variants of Tachiyomi (Tachiyomi, TachiyomiSY, TachiyomiJ2K, TachiyomiAZ, Mihon),
+click the button below to add the repository:
 
 <AddRepoButton />
 

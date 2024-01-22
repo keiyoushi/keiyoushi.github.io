@@ -44,7 +44,7 @@ export default defineConfig({
     ],
     
     editLink: {
-      pattern: 'https://github.com/keiyoushi/website/edit/main/website/:path',
+      pattern: 'https://github.com/keiyoushi/keiyoushi.github.io/edit/main/website/:path',
       text: 'Help us improve this page',
     },
 
