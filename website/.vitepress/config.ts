@@ -20,13 +20,7 @@ export default defineConfig({
   description: "An unofficial repository of extensions for Tachiyomi and variants.",
   cleanUrls: true,
   transformHead: (context) => {
-    context.head.push(
-      ['meta', { name: 'robots', content: 'noindex, nofollow' }],
-      ['meta', { property: 'og:title', content: 'Keiyoushi' }],
-      ['meta', { property: 'og:description', content: 'A repository of unofficial Tachiyomi extensions.' }],
-      ['meta', { property: 'og:image', content: '/android-chrome-192x192.png' }],
-      ['meta', { name: 'theme-color', content: '#2e84bf' }],
-    );
+    context.head.push(['meta', { name: 'robots', content: 'noindex, nofollow' }]);
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
