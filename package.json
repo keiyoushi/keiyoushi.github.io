@@ -21,7 +21,8 @@
     "element-plus": "^2.5.2",
     "lodash.groupby": "^4.6.0",
     "markdown-it-shortcode-tag": "^1.1.0",
-    "unplugin-element-plus": "^0.8.0"
+    "unplugin-element-plus": "^0.8.0",
+    "v-lazy-image": "^2.1.1"
   },
   "devDependencies": {
     "@mdit/plugin-attrs": "^0.8.0",

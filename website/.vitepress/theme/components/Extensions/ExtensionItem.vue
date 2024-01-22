@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, toRefs } from 'vue'
+import VLazyImage from 'v-lazy-image';
 import { GITHUB_EXTENSION_BASE } from '../../../config/constants';
-import type { Extension } from '../../queries/useExtensionsRepositoryQuery'
+import type { Extension } from '../../queries/useExtensionsRepositoryQuery';
 
 const props = defineProps<{ item: Extension }>()
 
@@ -14,7 +14,7 @@ const apkUrl = `${GITHUB_EXTENSION_BASE}/apk/${props.item.apk}`;
 <template>
   <div :id="pkgId" class="extension" tabindex="-1">
     <a :href="`#${pkgId}`" class="anchor" aria-hidden="true" @click.stop>#</a>
-    <img class="extension-icon" :src="iconUrl" loading="lazy" width="42" height="42">
+    <v-lazy-image class="extension-icon" width="42" height="42" :src="iconUrl" />
     <div class="extension-text">
       <div class="upper">
         {{ pkgName }}
