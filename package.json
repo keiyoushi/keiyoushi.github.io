@@ -32,6 +32,7 @@
     "@mdit/plugin-img-size": "^0.8.0",
     "@mdit/plugin-include": "^0.8.0",
     "@types/lodash.groupby": "^4.6.9",
+    "@types/markdown-it": "^13.0.7",
     "@types/node": "^20.11.5",
     "stylus": "^0.62.0",
     "vite": "^5.0.12",
