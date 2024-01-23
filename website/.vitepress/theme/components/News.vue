@@ -1,3 +1,8 @@
+<!--
+  Copyright (c) The Tachiyomi Open Source Project
+  SPDX-License-Identifier: MPL-2.0
+-->
+
 <script setup lang="ts">
 import { IconChevronRight } from '@iconify-prerendered/vue-mdi'
 import { data as newsList } from '../data/news.data'

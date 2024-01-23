@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
 <script setup lang="ts">
 import { useRoute } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';

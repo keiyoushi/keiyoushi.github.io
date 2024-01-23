@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Apache-2.0
 title: Redirecting to new extensions page
 head:
   - - meta 

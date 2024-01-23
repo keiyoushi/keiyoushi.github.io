@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 import type MarkdownIt from "markdown-it";
 
 declare module "markdown-it-shortcode-tag" {

@@ -1,4 +1,6 @@
 ---
+# Copyright (c) The Tachiyomi Open Source Project
+# SPDX-License-Identifier: MPL-2.0
 title: HTTP errors
 titleTemplate: Troubleshooting - Guides
 description: Encountering HTTP errors? Here's what they mean and how to address them.

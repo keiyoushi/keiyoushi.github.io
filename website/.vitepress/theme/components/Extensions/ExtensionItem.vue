@@ -1,3 +1,8 @@
+<!--
+  Copyright (c) The Tachiyomi Open Source Project
+  SPDX-License-Identifier: MPL-2.0
+-->
+
 <script setup lang="ts">
 import VLazyImage from 'v-lazy-image';
 import { GITHUB_EXTENSION_BASE } from '../../../config/constants';

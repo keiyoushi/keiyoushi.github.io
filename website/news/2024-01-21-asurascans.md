@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Apache-2.0
 type: article
 title: Asura Scans (All) has split off
 description: Migrate your entries from Asura Scans (Turkish) to Armoni Scans.

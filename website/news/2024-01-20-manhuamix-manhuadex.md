@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Apache-2.0
 type: article
 title: Manhua Mix and ManhuaDex is down.
 description: Wait, or migrate to another extension.

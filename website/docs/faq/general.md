@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Apache-2.0
 title: General
 titleTemplate: Frequently asked questions
 description: Frequently asked questions about the Keiyoushi project.

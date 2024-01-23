@@ -1,4 +1,7 @@
-import { createContentLoader } from 'vitepress'
+// Copyright (c) The Tachiyomi Open Source Project
+// SPDX-License-Identifier: MPL-2.0
+
+import { createContentLoader } from 'vitepress';
 
 export interface News {
   title: string

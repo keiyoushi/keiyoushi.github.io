@@ -1,3 +1,8 @@
+<!--
+  Copyright (c) The Tachiyomi Open Source Project
+  SPDX-License-Identifier: MPL-2.0
+-->
+
 <script setup lang="ts">
 import { computed, toRefs } from 'vue'
 import { useMediaQuery } from '@vueuse/core'

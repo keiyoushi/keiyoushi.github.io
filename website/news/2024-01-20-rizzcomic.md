@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Apache-2.0
 type: article
 title: Rizz Comic has increased their Cloudflare protection level
 description: Wait, or migrate to another extension.

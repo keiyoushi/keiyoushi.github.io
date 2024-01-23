@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Apache-2.0
 title: "Add repository"
 description: "Add this repository to Tachiyomi."
 lastUpdated: false

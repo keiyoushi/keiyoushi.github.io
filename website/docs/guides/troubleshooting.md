@@ -1,4 +1,6 @@
 ---
+# Copyright (c) The Tachiyomi Open Source Project
+# SPDX-License-Identifier: MPL-2.0
 title: Troubleshooting
 titleTemplate: Guides
 description: Facing issues with extensions? Here's how to troubleshoot.

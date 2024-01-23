@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 import type { DefaultTheme } from "vitepress";
 import { GITHUB_EXTENSION_MIN_JSON } from "../constants";
 

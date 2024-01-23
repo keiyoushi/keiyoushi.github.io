@@ -1,3 +1,8 @@
+<!--
+  Copyright (c) The Tachiyomi Open Source Project
+  SPDX-License-Identifier: MPL-2.0
+-->
+
 <script setup lang="ts">
 import groupBy from "lodash.groupby";
 import { ElLoading } from "element-plus";

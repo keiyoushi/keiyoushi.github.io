@@ -1,3 +1,6 @@
+// Copyright (c) The Tachiyomi Open Source Project
+// SPDX-License-Identifier: MPL-2.0
+
 import type { UseQueryOptions } from '@tanstack/vue-query'
 import { useQuery } from '@tanstack/vue-query'
 import axios from 'axios'

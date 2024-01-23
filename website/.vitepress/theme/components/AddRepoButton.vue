@@ -1,3 +1,8 @@
+<!--
+  Copyright (c) The Tachiyomi Open Source Project
+  SPDX-License-Identifier: MPL-2.0
+-->
+
 <script setup lang="ts">
 import { GITHUB_EXTENSION_MIN_JSON } from "../../config/constants";
 import { onMounted, ref } from "vue";

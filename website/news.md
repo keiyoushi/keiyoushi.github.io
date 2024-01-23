@@ -1,4 +1,6 @@
 ---
+# Copyright (c) The Tachiyomi Open Source Project
+# SPDX-License-Identifier: MPL-2.0
 title: News
 description: Collection of news and announcements about Keiyoushi.
 lastUpdated: false

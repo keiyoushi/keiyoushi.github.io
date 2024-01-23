@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 import { defineConfig, loadEnv } from 'vitepress'
 import { attrs } from '@mdit/plugin-attrs';
 import { figure } from '@mdit/plugin-figure';

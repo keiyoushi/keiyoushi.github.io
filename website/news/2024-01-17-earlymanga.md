@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Apache-2.0
 type: article
 title: Migrate from EarlyManga to EarlyManga
 description: The website's format has changed.

@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Apache-2.0
 title: Getting started
 titleTemplate: Guides
 description: Essential information to help you set up the extension repo.

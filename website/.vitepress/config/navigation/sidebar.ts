@@ -1,3 +1,6 @@
+// Copyright (c) The Tachiyomi Open Source Project
+// SPDX-License-Identifier: MPL-2.0
+
 import type { DefaultTheme } from 'vitepress';
 
 const sidebar: DefaultTheme.SidebarMulti = {

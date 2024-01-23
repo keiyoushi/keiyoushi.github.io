@@ -1,4 +1,6 @@
 ---
+# Copyright (c) The Tachiyomi Open Source Project
+# SPDX-License-Identifier: MPL-2.0
 title: Extensions
 description: Browse and download sources for Tachiyomi and variants.
 lastUpdated: false
