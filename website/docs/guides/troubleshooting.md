@@ -83,7 +83,7 @@ Newer Android users can check/change WebView in [Developer Options](https://deve
 :::
 
 ::: warning Caution with Non-Standard WebView
-Using non-standard WebView (like Firefox) might cause **Tachiyomi** to malfunction or crash.
+Using non-standard WebView might cause **Tachiyomi** to malfunction or crash.
 
 It's best to use the standard [Android System WebView](https://play.google.com/store/apps/details?id=com.google.android.webview) or [Google Chrome](https://play.google.com/store/apps/details?id=com.android.chrome).
 :::
