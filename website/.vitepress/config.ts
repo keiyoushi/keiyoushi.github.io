@@ -43,7 +43,7 @@ export default defineConfig({
       },
       {
         icon: 'discord',
-        link: 'https://discord.gg/keiyoushi',
+        link: 'https://discord.gg/3FbCpdKbdY',
         ariaLabel: 'Discord server',
       },
     ],
