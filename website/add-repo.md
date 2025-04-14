@@ -1,7 +1,7 @@
 ---
 # SPDX-License-Identifier: Apache-2.0
 title: "Add repository"
-description: "Add this repository to Tachiyomi."
+description: "Add this repository to the app"
 lastUpdated: false
 editLink: false
 prev: false
@@ -35,11 +35,11 @@ next: false
 </script>
 
 <div v-if="isAndroid">
-    You should be redirected to Tachiyomi in a moment. Refresh the page if it doesn't work,
+    You should be redirected to Mihon in a moment. Refresh the page if it doesn't work,
     or add the repo manually using this link:
 </div>
 <div v-else>
-    Unsupported operating system. Tachiyomi is an <strong>Android</strong> app only. Please add
+    Unsupported operating system. Mihon is an <strong>Android</strong> app only. Please add
     the repo manually using this link:
 </div>
 

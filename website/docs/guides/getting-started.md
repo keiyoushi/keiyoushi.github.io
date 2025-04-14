@@ -18,7 +18,7 @@ Essential information to help you set up the extension repo.
 Uninstall all existing extensions. You will not get extension updates otherwise.
 
 ### Adding the repository
-For all modern variants of Tachiyomi (Tachiyomi, TachiyomiSY, TachiyomiJ2K, TachiyomiAZ, Mihon),
+For all modern variants of Mihon (TachiyomiSY, Komikku, Yokai, TachiyomiJ2K, TachiyomiAZ),
 click the button below to add the repository:
 
 <AddRepoButton />
@@ -26,11 +26,11 @@ click the button below to add the repository:
 ::: details Adding the repo manually
 - Go to <nav to="extension-repos">
 - Select "Add" at the bottom of your screen.
-- Enter <a :href="GITHUB_EXTENSION_MIN_JSON">{{ GITHUB_EXTENSION_MIN_JSON }}</a>.
+- Enter <a :href="GITHUB_EXTENSION_MIN_JSON">{{ GITHUB_EXTENSION_MIN_JSON }}</a>
 :::
 
 ### Reinstall the extensions
-Restart Tachiyomi to reload the extension list, then reinstall all extensions.
+Restart Mihon to reload the extension list, then reinstall all extensions.
 
 ::: tip
 Go to <nav to="migrate"> to see what extensions you are missing.

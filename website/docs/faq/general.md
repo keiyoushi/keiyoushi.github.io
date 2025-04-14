@@ -12,4 +12,4 @@ Frequently asked questions.
 Extensions will be maintained as long as there are contributors updating them.
 
 ## Who is maintaining these extensions?
-Volunteers who spend their free time, just like the old official extension repo.
+Volunteers who spend their free time, just like the old Tachiyomi extension repo.

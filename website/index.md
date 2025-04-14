@@ -4,12 +4,12 @@
 layout: "home"
 
 title: "Keiyoushi"
-description: "An unofficial repository of extensions for Tachiyomi and variants."
+description: "Extension repository for Mihon and variants."
 
 hero:
   name: "Keiyoushi"
   text: ""
-  tagline: "An unofficial repository of extensions for Tachiyomi and variants."
+  tagline: "Extension repository for Mihon and variants."
   actions:
     - theme: "brand"
       text: "Get started"
