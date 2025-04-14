@@ -6,7 +6,6 @@ import type { DefaultTheme } from 'vitepress';
 const sidebar: DefaultTheme.SidebarMulti = {
   '/add-repo': defaultSidebar(),
   '/extensions/': defaultSidebar(),
-  '/news': defaultSidebar(),
   '/docs/': defaultSidebar(),
 };
 
