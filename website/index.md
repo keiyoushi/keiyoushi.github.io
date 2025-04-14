@@ -15,8 +15,8 @@ hero:
       text: "Get started"
       link: "/docs/guides/getting-started"
     - theme: "alt"
-      text: "Star the project"
-      link: "https://github.com/keiyoushi/extensions"
+      text: "Need Help?"
+      link: "https://discord.gg/3FbCpdKbdY"
 
 features:
   - title: "Extensions"
