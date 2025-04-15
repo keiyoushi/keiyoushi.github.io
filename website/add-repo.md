@@ -10,20 +10,32 @@ next: false
 
 <script setup lang="ts">
     import { onMounted, ref } from "vue";
-    import { GITHUB_EXTENSION_MIN_JSON } from "./.vitepress/config/constants";
+    import { GITHUB_EXTENSION_MIN_JSON, JSDELIVR_EXTENSION_MIN_JSON } from "./.vitepress/config/constants";
 
     const isAndroid = ref(true);
+    const url = ref(GITHUB_EXTENSION_MIN_JSON);
+    const officialRepos = [GITHUB_EXTENSION_MIN_JSON, JSDELIVR_EXTENSION_MIN_JSON]
 
     onMounted(() => {
         isAndroid.value = !!navigator.userAgent.match(/android/i);
+        const urlParm = new URLSearchParams(window.location.search).get("url") || GITHUB_EXTENSION_MIN_JSON;
+        const encodedUrl = encodeURIComponent(urlParm);
+
+        if (!officialRepos.includes(urlParm)) {
+            window.location.replace("/");
+            return;
+        }
+
+        url.value = urlParm
+
 
         if (isAndroid.value) {
             window.goatcounter?.count?.({
                 path: "/#add-to-tachiyomi",
                 title: "Add extension repository",
             });
-            
-            window.location.replace(`tachiyomi://add-repo?url=${GITHUB_EXTENSION_MIN_JSON}`);
+
+            window.location.replace(`tachiyomi://add-repo?url=${encodedUrl}`);
         }
     });
 </script>
@@ -37,4 +49,4 @@ next: false
     the repo manually using this link:
 </div>
 
-<a :href="GITHUB_EXTENSION_MIN_JSON">{{ GITHUB_EXTENSION_MIN_JSON }}</a>
+<a :href="url">{{ url }}</a>
