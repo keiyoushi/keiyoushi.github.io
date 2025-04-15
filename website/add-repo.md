@@ -13,23 +13,17 @@ next: false
     import { GITHUB_EXTENSION_MIN_JSON } from "./.vitepress/config/constants";
 
     const isAndroid = ref(true);
-    const decodedUrl = ref("");
 
     onMounted(() => {
         isAndroid.value = !!navigator.userAgent.match(/android/i);
-        decodedUrl.value = new URLSearchParams(window.location.search).get("url");    
-
-        const reencodedUrl = encodeURIComponent(decodedUrl.value);
 
         if (isAndroid.value) {
-            if (decodedUrl == GITHUB_EXTENSION_MIN_JSON) {
-                window.goatcounter?.count?.({
-                    path: "/#add-to-tachiyomi",
-                    title: "Add extension repository",
-                });
-            }
-
-            window.location.replace(`tachiyomi://add-repo?url=${reencodedUrl}`);
+            window.goatcounter?.count?.({
+                path: "/#add-to-tachiyomi",
+                title: "Add extension repository",
+            });
+            
+            window.location.replace(`tachiyomi://add-repo?url=${GITHUB_EXTENSION_MIN_JSON}`);
         }
     });
 </script>
@@ -43,4 +37,4 @@ next: false
     the repo manually using this link:
 </div>
 
-<a :href="decodedUrl">{{ decodedUrl }}</a>
+<a :href="GITHUB_EXTENSION_MIN_JSON">{{ GITHUB_EXTENSION_MIN_JSON }}</a>
