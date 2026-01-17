@@ -1,4 +1,4 @@
----
+titleTemplate: Troubleshooting Vortex Scans---
 # SPDX-License-Identifier: Apache-2.0
 title: General
 titleTemplate: Frequently asked questions
