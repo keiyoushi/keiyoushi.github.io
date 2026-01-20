@@ -1,4 +1,4 @@
----
+title: VORTEX SCANS Troubleshooting---
 # Copyright (c) The Tachiyomi Open Source Project
 # SPDX-License-Identifier: MPL-2.0
 title: Troubleshooting
