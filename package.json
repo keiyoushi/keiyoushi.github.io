@@ -21,6 +21,7 @@
     "element-plus": "^2.14.0",
     "lodash.groupby": "^4.6.0",
     "markdown-it-shortcode-tag": "^1.1.0",
+    "protobufjs": "^8.4.2",
     "unplugin-element-plus": "^0.11.2",
     "v-lazy-image": "^2.1.1"
   },

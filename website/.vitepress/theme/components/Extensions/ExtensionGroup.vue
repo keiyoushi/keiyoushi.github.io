@@ -9,15 +9,15 @@ import type { Extension } from '../../queries/useExtensionsRepositoryQuery';
 import ExtensionItem from './ExtensionItem.vue';
 import { simpleLangName, langName } from '../../utils/languages';
 
-const props = defineProps<{ list: Extension[], totalCount: number }>()
+const props = defineProps<{ list: Extension[], lang: string, totalCount: number }>()
 const { list } = toRefs(props)
 
 const groupName = computed(() => {
-  const firstItem = list.value[0]
+  const lang = props.lang
 
-  return firstItem.lang === 'en'
-    ? simpleLangName(firstItem.lang)
-    : langName(firstItem.lang)
+  return lang === 'en'
+    ? simpleLangName(lang)
+    : langName(lang)
 })
 </script>
 
@@ -36,7 +36,7 @@ const groupName = computed(() => {
 
     <ExtensionItem
       v-for="extension in list"
-      :key="extension.apk"
+      :key="`${extension.packageName}-${props.lang}`"
       :item="extension"
     />
   </div>

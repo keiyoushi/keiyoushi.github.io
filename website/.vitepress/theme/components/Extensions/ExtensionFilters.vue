@@ -18,13 +18,13 @@ import {
 } from 'element-plus'
 
 import { langName, simpleLangName } from '../../utils/languages'
-import type { Extension } from '../../queries/useExtensionsRepositoryQuery'
+import type { ExtensionGroupData } from './ExtensionsWrapper.vue'
 
 export type Nsfw = 'Show all' | 'NSFW' | 'SFW'
 export type Sort = 'Ascending' | 'Descending'
 
 const props = defineProps<{
-  extensions: Extension[][]
+  extensions: ExtensionGroupData[]
   search: string
   lang: string[]
   nsfw: Nsfw
@@ -65,7 +65,7 @@ const labelPosition = computed(() => isSmallScreen.value ? 'top' : 'right')
             @update:model-value="$emit('update:lang', $event)"
           >
             <ElOption
-              v-for="[group] in extensions"
+              v-for="group in extensions"
               :key="group.lang"
               :label="group.lang === 'en' ? simpleLangName(group.lang) : langName(group.lang)"
               :value="group.lang"

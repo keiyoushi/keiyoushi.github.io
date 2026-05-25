@@ -5,19 +5,22 @@
 
 <script setup lang="ts">
 import VLazyImage from 'v-lazy-image';
-import { GITHUB_EXTENSION_BASE } from '../../../config/constants';
+import { computed } from 'vue';
 import type { Extension } from '../../queries/useExtensionsRepositoryQuery';
 
 const props = defineProps<{ item: Extension }>()
 
-const pkgId = props.item.pkg.replace('eu.kanade.tachiyomi.extension.', '');
-const pkgName = props.item.name.split(': ')[1];
-const iconUrl = `${GITHUB_EXTENSION_BASE}/icon/${props.item.pkg}.png`;
-const apkUrl = `${GITHUB_EXTENSION_BASE}/apk/${props.item.apk}`;
+const pkgId = props.item.packageName.replace('eu.kanade.tachiyomi.extension.', '');
+const pkgName = props.item.name;
+const iconUrl = props.item.resources.iconUrl;
+const apkUrl = props.item.resources.apkUrl;
 
-function handleAnalytics(apk: string) {
+const isNsfw = computed(() => props.item.sources.some(s => s.contentRating === 'CONTENT_RATING_EROTICA' || s.contentRating === 'CONTENT_RATING_PORNOGRAPHIC'));
+
+function handleAnalytics(apkUrl: string) {
+  const apkName = apkUrl.split('/').pop();
   window.goatcounter?.count?.({
-    path: `/extensions/apk/${apk}`
+    path: `/extensions/apk/${apkName}`
   })
 }
 </script>
@@ -34,14 +37,13 @@ function handleAnalytics(apk: string) {
         {{ pkgId }}
       </div>
     </div>
-    <Badge v-if="props.item.nsfw" type="danger" :text="item.version" title="This extension contains NSFW entries." />
-    <Badge v-else type="info" :text="item.version" title="This extension is free from NSFW entries." />
+    <Badge v-if="isNsfw" type="danger" :text="item.versionName" title="This extension contains NSFW entries." />
+    <Badge v-else type="info" :text="item.versionName" title="This extension is free from NSFW entries." />
     <a
       :href="apkUrl"
       class="extension-download"
       title="Download APK"
-      :download="item.apk"
-      @click="handleAnalytics(item.apk)"
+      @click="handleAnalytics(apkUrl)"
     >
       ↓
     </a>

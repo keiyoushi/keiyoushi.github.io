@@ -5,14 +5,14 @@
 
 <script setup lang="ts">
 import { computed, toRefs } from 'vue'
-import type { Extension } from '../../queries/useExtensionsRepositoryQuery'
+import type { ExtensionGroupData } from './ExtensionsWrapper.vue'
 import ExtensionGroup from './ExtensionGroup.vue'
 
-const props = defineProps<{ extensions: Extension[][] }>()
+const props = defineProps<{ extensions: ExtensionGroupData[] }>()
 const { extensions } = toRefs(props)
 
 const totalCount = computed(() => {
-  return extensions.value.reduce((sum, item) => sum + item.length, 0)
+  return extensions.value.reduce((sum, item) => sum + item.items.length, 0)
 })
 </script>
 
@@ -20,9 +20,9 @@ const totalCount = computed(() => {
   <div class="extension-list">
     <ExtensionGroup
       v-for="group in extensions"
-      :key="group[0].lang"
-      :list="group"
-      :class="group[0].lang"
+      :key="group.lang"
+      :lang="group.lang"
+      :list="group.items"
       :total-count="totalCount"
     />
   </div>

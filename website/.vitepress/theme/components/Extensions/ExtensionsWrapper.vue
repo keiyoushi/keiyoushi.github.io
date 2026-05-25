@@ -15,12 +15,33 @@ import ExtensionFilters from "./ExtensionFilters.vue";
 import ExtensionList from "./ExtensionList.vue";
 import type { Nsfw, Sort } from "./ExtensionFilters.vue";
 
+export interface ExtensionGroupData {
+	lang: string
+	items: Extension[]
+}
+
 const { data: extensions, isLoading } = useExtensionsRepositoryQuery({
 	select: (response) => {
-		const values: Extension[][] = Object.values(groupBy(response, "lang"))
-		values.sort(languageComparator)
+		const groupsMap = new Map<string, Extension[]>()
 
-		return values
+		for (const ext of response) {
+			const langs = new Set(ext.sources.map((s) => s.language || 'all'))
+			for (const lang of langs) {
+				if (!groupsMap.has(lang)) {
+					groupsMap.set(lang, [])
+				}
+				groupsMap.get(lang)!.push(ext)
+			}
+		}
+
+		const groups: ExtensionGroupData[] = Array.from(groupsMap.entries()).map(([lang, items]) => ({
+			lang,
+			items,
+		}))
+
+		groups.sort((a, b) => languageComparator(a.lang, b.lang))
+
+		return groups
 	},
 })
 
@@ -31,56 +52,48 @@ const filters = reactive({
 	sort: "Ascending" as Sort,
 })
 
-function languageComparator(a: Extension[], b: Extension[]) {
-	const langA = simpleLangName(a[0].lang)
-	const langB = simpleLangName(b[0].lang)
-	if (langA === "All" && langB === "English") {
-		return -1
-	}
-	if (langA === "English" && langB === "All") {
-		return 1
-	}
-	if (langA === "English") {
-		return -1
-	}
-	if (langB === "English") {
-		return 1
-	}
-	if (langA < langB) {
-		return -1
-	}
-	if (langA > langB) {
-		return 1
-	}
-	return 0
+function languageComparator(langA: string, langB: string) {
+	if (langA === "all") return -1
+	if (langB === "all") return 1
+	if (langA === "en") return -1
+	if (langB === "en") return 1
+
+	const nameA = simpleLangName(langA)
+	const nameB = simpleLangName(langB)
+	return nameA.localeCompare(nameB)
 }
 
 const filteredExtensions = computed(() => {
-	const filtered: Extension[][] = []
+	const filtered: ExtensionGroupData[] = []
 
 	for (const group of (extensions.value ?? [])) {
-		let filteredGroup = filters.lang.length
-			? (filters.lang.includes(group[0].lang) ? group : [])
-			: group
+		let filteredItems = filters.lang.length
+			? (filters.lang.includes(group.lang) ? group.items : [])
+			: group.items
 
 		if (filters.search) {
       const lower = filters.search.toLowerCase();
 
-			filteredGroup = filteredGroup.filter(
+			filteredItems = filteredItems.filter(
 				(ext) =>
 					ext.name.toLowerCase().includes(lower)
 					|| ext.sources.some((source) => source.id.includes(filters.search)),
 			)
 		}
-		filteredGroup = filteredGroup.filter((ext) =>
-			filters.nsfw === "Show all" ? true : ext.nsfw === (filters.nsfw === "NSFW" ? 1 : 0),
-		)
+		filteredItems = filteredItems.filter((ext) => {
+			if (filters.nsfw === "Show all") return true
+			const isNsfw = ext.sources.some(s => s.contentRating === 'CONTENT_RATING_EROTICA' || s.contentRating === 'CONTENT_RATING_PORNOGRAPHIC')
+			return isNsfw === (filters.nsfw === "NSFW")
+		})
 
 		if (filters.sort && filters.sort === "Descending") {
-			filteredGroup = filteredGroup.reverse()
+			filteredItems = [...filteredItems].reverse()
 		}
-		if (filteredGroup.length) {
-			filtered.push(filteredGroup)
+		if (filteredItems.length) {
+			filtered.push({
+				lang: group.lang,
+				items: filteredItems,
+			})
 		}
 	}
 
