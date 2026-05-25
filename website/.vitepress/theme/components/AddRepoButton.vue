@@ -45,7 +45,7 @@ function handleAnalytics() {
       </a>
     </div>
     <span class="version-disclaimer">
-      Requires <strong>Tachiyomi 0.15.2</strong> or newer.
+      Requires <strong>Mihon 0.19.9</strong> or newer.
     </span>
   </div>
 </template>
