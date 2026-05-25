@@ -4,7 +4,7 @@
 import type { UseQueryOptions } from '@tanstack/vue-query'
 import { useQuery } from '@tanstack/vue-query'
 import axios from 'axios'
-import { GITHUB_EXTENSION_JSON } from '../../config/constants'
+import { GITHUB_EXTENSION_MIN_JSON } from '../../config/constants'
 
 export type ReleaseType = 'stable' | 'preview'
 
@@ -16,8 +16,6 @@ export interface Extension {
   code: number
   version: string
   nsfw: number
-  hasReadme: number
-  hasChangelog: number
   sources: Source[]
 }
 
@@ -26,7 +24,6 @@ export interface Source {
   lang: string
   id: string
   baseUrl: string
-  versionId: number
 }
 
 type UseExtensionsRepositoryQueryOptions<S = Extension[]> =
