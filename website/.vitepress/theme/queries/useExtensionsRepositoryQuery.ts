@@ -33,7 +33,7 @@ export default function useExtensionsRepositoryQuery<S = Extension[]>(options: U
   return useQuery<Extension[], Error, S>({
     queryKey: ['extensions'],
     queryFn: async () => {
-      const { data } = await axios.get<Extension[]>(GITHUB_EXTENSION_JSON)
+      const { data } = await axios.get<Extension[]>(GITHUB_EXTENSION_MIN_JSON)
 
       return data
     },
