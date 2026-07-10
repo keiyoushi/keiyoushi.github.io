@@ -128,6 +128,11 @@ function handleAnalytics(apkUrl: string) {
     }
   }
 
+  .VPBadge {
+    flex-shrink: 0
+    white-space: nowrap
+  }
+
   .extension-download {
     padding: 0.4em
     font-weight: 700
