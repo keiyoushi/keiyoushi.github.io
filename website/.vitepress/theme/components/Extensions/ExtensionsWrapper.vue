@@ -4,83 +4,135 @@
 -->
 
 <script setup lang="ts">
-import groupBy from "lodash.groupby";
 import { ElLoading } from "element-plus";
 
-import { computed, nextTick, onMounted, reactive, ref, watch } from "vue";
+import { nextTick, onMounted, reactive, ref, watch, computed } from "vue";
 import { simpleLangName } from "../../utils/languages";
 import useExtensionsRepositoryQuery from "../../queries/useExtensionsRepositoryQuery";
-import type { Extension } from "../../queries/useExtensionsRepositoryQuery";
+import { ContentWarning } from "../../queries/useExtensionsRepositoryQuery";
 import ExtensionFilters from "./ExtensionFilters.vue";
 import ExtensionList from "./ExtensionList.vue";
-import type { Nsfw, Sort } from "./ExtensionFilters.vue";
+import type { Warning, Sort } from "./ExtensionFilters.vue";
 
-const { data: extensions, isLoading } = useExtensionsRepositoryQuery({
+// A single source flattened together with the metadata of the extension that
+// provides it. The list is presented Mihon-style: one row per source.
+export interface SourceRow {
+	id: string
+	name: string
+	language: string
+	homeUrl: string
+	mirrorUrls: string[]
+	extName: string
+	packageName: string
+	iconUrl: string
+	apkUrl: string
+	versionName: string
+	contentWarning: ContentWarning
+}
+
+export interface SourceGroupData {
+	lang: string
+	items: SourceRow[]
+}
+
+const { data: groups, isLoading } = useExtensionsRepositoryQuery({
 	select: (response) => {
-		const values: Extension[][] = Object.values(groupBy(response, "lang"))
-		values.sort(languageComparator)
+		const groupsMap = new Map<string, SourceRow[]>()
 
-		return values
+		for (const ext of response) {
+			for (const source of ext.sources) {
+				const lang = source.language || "all"
+
+				const row: SourceRow = {
+					id: source.id,
+					name: source.name,
+					language: lang,
+					homeUrl: source.homeUrl,
+					mirrorUrls: source.mirrorUrls ?? [],
+					extName: ext.name,
+					packageName: ext.packageName,
+					iconUrl: ext.resources.iconUrl,
+					apkUrl: ext.resources.apkUrl,
+					versionName: ext.versionName,
+					contentWarning: ext.contentWarning,
+				}
+
+				if (!groupsMap.has(lang)) {
+					groupsMap.set(lang, [])
+				}
+				groupsMap.get(lang)!.push(row)
+			}
+		}
+
+		const result: SourceGroupData[] = Array.from(groupsMap, ([lang, items]) => {
+			items.sort((a, b) => a.name.localeCompare(b.name))
+			return { lang, items }
+		})
+
+		result.sort((a, b) => languageComparator(a.lang, b.lang))
+
+		return result
 	},
 })
 
 const filters = reactive({
 	search: "",
 	lang: [] as string[],
-	nsfw: "Show all" as Nsfw,
+	warning: "All" as Warning,
 	sort: "Ascending" as Sort,
 })
 
-function languageComparator(a: Extension[], b: Extension[]) {
-	const langA = simpleLangName(a[0].lang)
-	const langB = simpleLangName(b[0].lang)
-	if (langA === "All" && langB === "English") {
-		return -1
-	}
-	if (langA === "English" && langB === "All") {
-		return 1
-	}
-	if (langA === "English") {
-		return -1
-	}
-	if (langB === "English") {
-		return 1
-	}
-	if (langA < langB) {
-		return -1
-	}
-	if (langA > langB) {
-		return 1
-	}
-	return 0
+function languageComparator(langA: string, langB: string) {
+	if (langA === langB) return 0
+	if (langA === "all") return -1
+	if (langB === "all") return 1
+	if (langA === "en") return -1
+	if (langB === "en") return 1
+
+	return simpleLangName(langA).localeCompare(simpleLangName(langB))
 }
 
-const filteredExtensions = computed(() => {
-	const filtered: Extension[][] = []
+function matchesWarning(warning: ContentWarning) {
+	switch (filters.warning) {
+		case "Safe":
+			return warning === ContentWarning.SAFE
+		case "Mixed":
+			return warning === ContentWarning.MIXED
+		case "NSFW":
+			return warning === ContentWarning.NSFW
+		default:
+			return true
+	}
+}
 
-	for (const group of (extensions.value ?? [])) {
-		let filteredGroup = filters.lang.length
-			? (filters.lang.includes(group[0].lang) ? group : [])
-			: group
+const filteredGroups = computed(() => {
+	const filtered: SourceGroupData[] = []
+	const lower = filters.search.toLowerCase()
+
+	for (const group of (groups.value ?? [])) {
+		if (filters.lang.length && !filters.lang.includes(group.lang)) {
+			continue
+		}
+
+		let items = group.items.filter((source) => matchesWarning(source.contentWarning))
 
 		if (filters.search) {
-      const lower = filters.search.toLowerCase();
-
-			filteredGroup = filteredGroup.filter(
-				(ext) =>
-					ext.name.toLowerCase().includes(lower)
-					|| ext.sources.some((source) => source.id.includes(filters.search)),
+			items = items.filter(
+				(source) =>
+					source.name.toLowerCase().includes(lower)
+					|| source.extName.toLowerCase().includes(lower)
+					|| source.id.includes(filters.search)
+					|| source.homeUrl.toLowerCase().includes(lower)
+					|| source.mirrorUrls.some((url) => url.toLowerCase().includes(lower)),
 			)
 		}
-		filteredGroup = filteredGroup.filter((ext) =>
-			filters.nsfw === "Show all" ? true : ext.nsfw === (filters.nsfw === "NSFW" ? 1 : 0),
-		)
 
-		if (filters.sort && filters.sort === "Descending") {
-			filteredGroup = filteredGroup.reverse()
+		if (filters.sort === "Descending") {
+			items = [...items].reverse()
 		}
-		if (filteredGroup.length) {
-			filtered.push(filteredGroup)
+
+		if (items.length) {
+			filtered.push({ lang: group.lang, items })
 		}
 	}
 
@@ -97,7 +149,7 @@ onMounted(() => {
 	})
 })
 
-watch(extensions, async () => {
+watch(groups, async () => {
 	if (window.location.hash) {
 		await nextTick()
 		document.getElementById(window.location.hash.substring(1))
@@ -116,12 +168,12 @@ watch([isLoading, loadingInstance], async ([newIsLoading]) => {
 	<ExtensionFilters
 		v-model:search="filters.search"
 		v-model:lang="filters.lang"
-		v-model:nsfw="filters.nsfw"
+		v-model:warning="filters.warning"
 		v-model:sort="filters.sort"
-		:extensions="extensions ?? []"
+		:groups="groups ?? []"
 	/>
 	<div class="extensions">
-		<ExtensionList v-if="!isLoading" :extensions="filteredExtensions" />
+		<ExtensionList v-if="!isLoading" :groups="filteredGroups" />
 	</div>
 </template>
 

@@ -4,26 +4,55 @@
 import type { UseQueryOptions } from '@tanstack/vue-query'
 import { useQuery } from '@tanstack/vue-query'
 import axios from 'axios'
-import { GITHUB_EXTENSION_MIN_JSON } from '../../config/constants'
+import { JSDELIVR_EXTENSION_JSON } from '../../config/constants'
 
 export type ReleaseType = 'stable' | 'preview'
 
+export interface Index {
+  name: string
+  badgeLabel?: string
+  signingKey: string
+  contact?: Contact
+  extensionList: ExtensionList
+}
+
+export interface Contact {
+  website?: string
+  discord?: string
+}
+
+export interface ExtensionList {
+  extensions: Extension[]
+}
+
 export interface Extension {
   name: string
-  pkg: string
-  apk: string
-  lang: string
-  code: number
-  version: string
-  nsfw: number
+  packageName: string
+  resources: Resources
+  extensionLib: string
+  versionCode: string
+  versionName: string
+  contentWarning: ContentWarning
   sources: Source[]
 }
 
+export interface Resources {
+  apkUrl: string
+  iconUrl: string
+}
+
 export interface Source {
-  name: string
-  lang: string
   id: string
-  baseUrl: string
+  name: string
+  language: string
+  homeUrl: string
+  mirrorUrls?: string[]
+}
+
+export enum ContentWarning {
+  SAFE = 'CONTENT_WARNING_SAFE',
+  NSFW = 'CONTENT_WARNING_NSFW',
+  MIXED = 'CONTENT_WARNING_MIXED',
 }
 
 type UseExtensionsRepositoryQueryOptions<S = Extension[]> =
@@ -33,9 +62,9 @@ export default function useExtensionsRepositoryQuery<S = Extension[]>(options: U
   return useQuery<Extension[], Error, S>({
     queryKey: ['extensions'],
     queryFn: async () => {
-      const { data } = await axios.get<Extension[]>(GITHUB_EXTENSION_MIN_JSON)
+      const { data } = await axios.get<Index>(JSDELIVR_EXTENSION_JSON)
 
-      return data
+      return data.extensionList?.extensions ?? []
     },
     initialData: () => [],
     refetchOnWindowFocus: false,

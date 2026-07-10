@@ -4,20 +4,17 @@
 -->
 
 <script setup lang="ts">
-import { computed, toRefs } from 'vue';
-import type { Extension } from '../../queries/useExtensionsRepositoryQuery';
+import { computed } from 'vue';
+import type { SourceRow } from './ExtensionsWrapper.vue';
 import ExtensionItem from './ExtensionItem.vue';
 import { simpleLangName, langName } from '../../utils/languages';
 
-const props = defineProps<{ list: Extension[], totalCount: number }>()
-const { list } = toRefs(props)
+const props = defineProps<{ list: SourceRow[], lang: string, totalCount: number, extensionCount: number }>()
 
 const groupName = computed(() => {
-  const firstItem = list.value[0]
-
-  return firstItem.lang === 'en'
-    ? simpleLangName(firstItem.lang)
-    : langName(firstItem.lang)
+  return props.lang === 'en'
+    ? simpleLangName(props.lang)
+    : langName(props.lang)
 })
 </script>
 
@@ -27,17 +24,22 @@ const groupName = computed(() => {
       <span>{{ groupName }}</span>
 
       <span class="extensions-total">
-        Total:
-        <span class="extensions-total-sum">
-          {{ totalCount }}
+        <span class="extensions-total-line">
+          <span class="extensions-total-sum">
+            {{ totalCount }}
+          </span>
+          sources
+        </span>
+        <span class="extensions-total-ext">
+          {{ extensionCount }} extensions
         </span>
       </span>
     </h2>
 
     <ExtensionItem
-      v-for="extension in list"
-      :key="extension.apk"
-      :item="extension"
+      v-for="source in list"
+      :key="source.id"
+      :item="source"
     />
   </div>
 </template>
@@ -48,8 +50,21 @@ const groupName = computed(() => {
   align-items: center
   justify-content: space-between
 
+  .extensions-total {
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    line-height: 1.3
+  }
+
   .extensions-total-sum {
     color: var(--vp-c-brand)
+  }
+
+  .extensions-total-ext {
+    color: var(--vp-c-text-2)
+    font-size: 0.7em
+    font-weight: 400
   }
 }
 </style>

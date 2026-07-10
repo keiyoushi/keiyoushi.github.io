@@ -5,43 +5,51 @@
 
 <script setup lang="ts">
 import VLazyImage from 'v-lazy-image';
-import { GITHUB_EXTENSION_BASE } from '../../../config/constants';
-import type { Extension } from '../../queries/useExtensionsRepositoryQuery';
+import { computed } from 'vue';
+import type { SourceRow } from './ExtensionsWrapper.vue';
+import { ContentWarning } from '../../queries/useExtensionsRepositoryQuery';
 
-const props = defineProps<{ item: Extension }>()
+const props = defineProps<{ item: SourceRow }>()
 
-const pkgId = props.item.pkg.replace('eu.kanade.tachiyomi.extension.', '');
-const pkgName = props.item.name.split(': ')[1];
-const iconUrl = `${GITHUB_EXTENSION_BASE}/icon/${props.item.pkg}.png`;
-const apkUrl = `${GITHUB_EXTENSION_BASE}/apk/${props.item.apk}`;
+const pkgId = props.item.packageName.replace('eu.kanade.tachiyomi.extension.', '');
 
-function handleAnalytics(apk: string) {
+const warning = computed(() => {
+  switch (props.item.contentWarning) {
+    case ContentWarning.NSFW:
+      return { type: 'danger', label: 'NSFW', title: 'This extension contains NSFW entries.' }
+    case ContentWarning.MIXED:
+      return { type: 'warning', label: 'Mixed', title: 'This extension contains a mix of SFW and NSFW entries.' }
+    default:
+      return { type: 'tip', label: 'Safe', title: 'This extension is free from NSFW entries.' }
+  }
+})
+
+function handleAnalytics(apkUrl: string) {
+  const apkName = apkUrl.split('/').pop();
   window.goatcounter?.count?.({
-    path: `/extensions/apk/${apk}`
+    path: `/extensions/apk/${apkName}`
   })
 }
 </script>
 
 <template>
-  <div :id="pkgId" class="extension" tabindex="-1">
-    <a :href="`#${pkgId}`" class="anchor" aria-hidden="true" @click.stop>#</a>
-    <v-lazy-image class="extension-icon" width="42" height="42" :src="iconUrl" />
+  <div :id="item.id" class="extension" tabindex="-1">
+    <a :href="`#${item.id}`" class="anchor" aria-hidden="true" @click.stop>#</a>
+    <v-lazy-image class="extension-icon" width="42" height="42" :src="item.iconUrl" />
     <div class="extension-text">
       <div class="upper">
-        {{ pkgName }}
+        {{ item.name }}
       </div>
       <div class="lower">
         {{ pkgId }}
       </div>
     </div>
-    <Badge v-if="props.item.nsfw" type="danger" :text="item.version" title="This extension contains NSFW entries." />
-    <Badge v-else type="info" :text="item.version" title="This extension is free from NSFW entries." />
+    <Badge :type="warning.type" :text="`${warning.label} · ${item.versionName}`" :title="warning.title" />
     <a
-      :href="apkUrl"
+      :href="item.apkUrl"
       class="extension-download"
       title="Download APK"
-      :download="item.apk"
-      @click="handleAnalytics(item.apk)"
+      @click="handleAnalytics(item.apkUrl)"
     >
       ↓
     </a>

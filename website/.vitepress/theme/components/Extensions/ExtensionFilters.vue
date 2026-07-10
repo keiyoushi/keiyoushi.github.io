@@ -18,27 +18,27 @@ import {
 } from 'element-plus'
 
 import { langName, simpleLangName } from '../../utils/languages'
-import type { Extension } from '../../queries/useExtensionsRepositoryQuery'
+import type { SourceGroupData } from './ExtensionsWrapper.vue'
 
-export type Nsfw = 'Show all' | 'NSFW' | 'SFW'
+export type Warning = 'All' | 'Safe' | 'Mixed' | 'NSFW'
 export type Sort = 'Ascending' | 'Descending'
 
 const props = defineProps<{
-  extensions: Extension[][]
+  groups: SourceGroupData[]
   search: string
   lang: string[]
-  nsfw: Nsfw
+  warning: Warning
   sort: Sort
 }>()
 
 defineEmits<{
   (e: 'update:search', search: string): void
   (e: 'update:lang', lang: string[]): void
-  (e: 'update:nsfw', nsfw: Nsfw): void
+  (e: 'update:warning', warning: Warning): void
   (e: 'update:sort', sort: Sort): void
 }>()
 
-const { extensions } = toRefs(props)
+const { groups } = toRefs(props)
 
 const isSmallScreen = useMediaQuery('(max-width: 767px)')
 const labelPosition = computed(() => isSmallScreen.value ? 'top' : 'right')
@@ -51,7 +51,7 @@ const labelPosition = computed(() => isSmallScreen.value ? 'top' : 'right')
         <ElFormItem label="Search:">
           <ElInput
             :model-value="search"
-            placeholder="Search extensions by name or ID..."
+            placeholder="Search sources by name, ID or URL..."
             clearable
             @update:model-value="$emit('update:search', $event)"
           />
@@ -65,7 +65,7 @@ const labelPosition = computed(() => isSmallScreen.value ? 'top' : 'right')
             @update:model-value="$emit('update:lang', $event)"
           >
             <ElOption
-              v-for="[group] in extensions"
+              v-for="group in groups"
               :key="group.lang"
               :label="group.lang === 'en' ? simpleLangName(group.lang) : langName(group.lang)"
               :value="group.lang"
@@ -81,14 +81,15 @@ const labelPosition = computed(() => isSmallScreen.value ? 'top' : 'right')
             <ElRadio label="Descending" />
           </ElRadioGroup>
         </ElFormItem>
-        <ElFormItem label="Display mode:">
+        <ElFormItem label="Content:">
           <ElRadioGroup
-            :model-value="nsfw"
-            @update:model-value="$emit('update:nsfw', $event)"
+            :model-value="warning"
+            @update:model-value="$emit('update:warning', $event)"
           >
+            <ElRadio label="All" />
+            <ElRadio label="Safe" />
+            <ElRadio label="Mixed" />
             <ElRadio label="NSFW" />
-            <ElRadio label="SFW" />
-            <ElRadio label="Show all" />
           </ElRadioGroup>
         </ElFormItem>
       </ElForm>

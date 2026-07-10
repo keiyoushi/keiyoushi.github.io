@@ -5,25 +5,36 @@
 
 <script setup lang="ts">
 import { computed, toRefs } from 'vue'
-import type { Extension } from '../../queries/useExtensionsRepositoryQuery'
+import type { SourceGroupData } from './ExtensionsWrapper.vue'
 import ExtensionGroup from './ExtensionGroup.vue'
 
-const props = defineProps<{ extensions: Extension[][] }>()
-const { extensions } = toRefs(props)
+const props = defineProps<{ groups: SourceGroupData[] }>()
+const { groups } = toRefs(props)
 
 const totalCount = computed(() => {
-  return extensions.value.reduce((sum, item) => sum + item.length, 0)
+  return groups.value.reduce((sum, group) => sum + group.items.length, 0)
+})
+
+const extensionCount = computed(() => {
+  const packages = new Set<string>()
+  for (const group of groups.value) {
+    for (const source of group.items) {
+      packages.add(source.packageName)
+    }
+  }
+  return packages.size
 })
 </script>
 
 <template>
   <div class="extension-list">
     <ExtensionGroup
-      v-for="group in extensions"
-      :key="group[0].lang"
-      :list="group"
-      :class="group[0].lang"
+      v-for="group in groups"
+      :key="group.lang"
+      :lang="group.lang"
+      :list="group.items"
       :total-count="totalCount"
+      :extension-count="extensionCount"
     />
   </div>
 </template>
