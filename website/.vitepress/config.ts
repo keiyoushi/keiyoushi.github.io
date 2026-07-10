@@ -22,7 +22,7 @@ const hostname: string = env.VITE_HOSTNAME || 'http://localhost:4173';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Keiyoushi",
-  description: "An unofficial repository of extensions for Tachiyomi and variants.",
+  description: "A repository of extensions for Mihon and variants.",
   cleanUrls: true,
   transformHead: (context) => {
     context.head.push(['meta', { name: 'robots', content: 'noindex, nofollow' }]);

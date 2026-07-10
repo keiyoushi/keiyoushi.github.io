@@ -83,7 +83,7 @@ Newer Android users can check/change WebView in [Developer Options](https://deve
 :::
 
 ::: warning Caution with Non-Standard WebView
-Using non-standard WebView might cause **Tachiyomi** to malfunction or crash.
+Using non-standard WebView might cause **Mihon** to malfunction or crash.
 
 It's best to use the standard [Android System WebView](https://play.google.com/store/apps/details?id=com.google.android.webview) or [Google Chrome](https://play.google.com/store/apps/details?id=com.android.chrome).
 :::
@@ -91,7 +91,7 @@ It's best to use the standard [Android System WebView](https://play.google.com/s
 ## Cloudflare
 
 **Cloudflare**, an anti-bot mechanism, is used by some sources.
-Some sources intentionally have higher **Cloudflare** protection to deter apps like **Tachiyomi**.
+Some sources intentionally have higher **Cloudflare** protection to deter apps like **Mihon**.
 
 ### Dealing with Cloudflare looping
 Certain sources may employ more advanced **Cloudflare** protection, leading to WebView continuously reloading when bypassing using the above solution.
