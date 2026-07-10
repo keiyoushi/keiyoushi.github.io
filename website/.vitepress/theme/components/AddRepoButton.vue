@@ -6,6 +6,9 @@
 <script setup lang="ts">
 import { GITHUB_EXTENSION_MIN_JSON } from "../../config/constants";
 import { onMounted, ref } from "vue";
+import useMihonVersionQuery from "../queries/useMihonVersionQuery";
+
+const { data: mihonVersion } = useMihonVersionQuery();
 
 const isAndroid = ref(true);
 
@@ -45,7 +48,7 @@ function handleAnalytics() {
       </a>
     </div>
     <span class="version-disclaimer">
-      Requires <strong>Tachiyomi 0.15.2</strong> or newer.
+      Requires <strong>Mihon {{ mihonVersion }}</strong> or newer.
     </span>
   </div>
 </template>

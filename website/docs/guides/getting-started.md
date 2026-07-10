@@ -18,7 +18,7 @@ Essential information to help you set up the extension repo.
 Uninstall all existing extensions. You will not get extension updates otherwise.
 
 ### Adding the repository
-For all modern variants of Mihon (TachiyomiSY, Komikku, Yokai, TachiyomiJ2K, TachiyomiAZ),
+For all modern variants of Mihon (TachiyomiSY, Komikku),
 click the button below to add the repository:
 
 <AddRepoButton />

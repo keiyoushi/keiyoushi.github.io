@@ -63,8 +63,7 @@ const navigationMappings: Record<string, Navigation> = {
   'reader': { name: 'Reader', icon: iconMappings.bookOpenOutline, dependsOn: 'settings' },
   'advanced': { name: 'Advanced', icon: iconMappings.codeTags, dependsOn: 'settings' },
 
-  // Edit repos (TachiyomiAZ)
-  'extension-repos': { name: 'Extension repos / Edit repos', dependsOn: 'browse' },
+  'extension-repos': { name: 'Extension repos', dependsOn: 'browse' },
 }
 
 function generateNavigationHtml(navKey: string) {
