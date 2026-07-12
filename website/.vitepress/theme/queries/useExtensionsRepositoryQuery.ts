@@ -4,7 +4,7 @@
 import type { UseQueryOptions } from '@tanstack/vue-query'
 import { useQuery } from '@tanstack/vue-query'
 import axios from 'axios'
-import { JSDELIVR_EXTENSION_JSON } from '../../config/constants'
+import { GITHUB_EXTENSION_JSON } from '../../config/constants'
 
 export type ReleaseType = 'stable' | 'preview'
 
@@ -62,7 +62,7 @@ export default function useExtensionsRepositoryQuery<S = Extension[]>(options: U
   return useQuery<Extension[], Error, S>({
     queryKey: ['extensions'],
     queryFn: async () => {
-      const { data } = await axios.get<Index>(JSDELIVR_EXTENSION_JSON)
+      const { data } = await axios.get<Index>(GITHUB_EXTENSION_JSON)
 
       return data.extensionList?.extensions ?? []
     },
