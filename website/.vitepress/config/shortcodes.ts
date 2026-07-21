@@ -63,7 +63,7 @@ const navigationMappings: Record<string, Navigation> = {
   'reader': { name: 'Reader', icon: iconMappings.bookOpenOutline, dependsOn: 'settings' },
   'advanced': { name: 'Advanced', icon: iconMappings.codeTags, dependsOn: 'settings' },
 
-  'extension-repos': { name: 'Extension repos', dependsOn: 'browse' },
+  'extension-repos': { name: 'Extension store', dependsOn: 'browse' },
 }
 
 function generateNavigationHtml(navKey: string) {

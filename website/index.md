@@ -4,12 +4,12 @@
 layout: "home"
 
 title: "Keiyoushi"
-description: "Extension repository for Mihon and variants."
+description: "Extension store for Mihon and variants."
 
 hero:
   name: "Keiyoushi"
   text: ""
-  tagline: "Extension repository for Mihon and variants."
+  tagline: "Extension store for Mihon and variants."
   actions:
     - theme: "brand"
       text: "Get started"

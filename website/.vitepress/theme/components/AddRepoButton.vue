@@ -4,7 +4,7 @@
 -->
 
 <script setup lang="ts">
-import { GITHUB_EXTENSION_MIN_JSON } from "../../config/constants";
+import { GITHUB_EXTENSION_PB } from "../../config/constants";
 import { onMounted, ref } from "vue";
 import useMihonVersionQuery from "../queries/useMihonVersionQuery";
 
@@ -33,7 +33,7 @@ function handleAnalytics() {
       <p>
         <strong>Mihon</strong> is an <strong>Android app</strong> only.
         Use an <strong>Android device with Mihon installed</strong> to
-        add this extension repo.
+        add this extension store.
       </p>
     </div>
   </div>
@@ -41,7 +41,7 @@ function handleAnalytics() {
     <div class="action-buttons">
       <a
         class="action-button primary"
-        :href="`tachiyomi://add-repo?url=${encodeURIComponent(GITHUB_EXTENSION_MIN_JSON)}`"
+        :href="`mihon://extension-store?url=${encodeURIComponent(GITHUB_EXTENSION_PB)}`"
         @click="handleAnalytics"
       >
         <span class="text">Add repository</span>

@@ -10,15 +10,15 @@ next: false
 
 <script setup lang="ts">
     import { onMounted, ref } from "vue";
-    import { GITHUB_EXTENSION_MIN_JSON, JSDELIVR_EXTENSION_MIN_JSON } from "./.vitepress/config/constants";
+    import { GITHUB_EXTENSION_PB, JSDELIVR_EXTENSION_PB } from "./.vitepress/config/constants";
 
     const isAndroid = ref(true);
-    const url = ref(GITHUB_EXTENSION_MIN_JSON);
-    const officialRepos = [GITHUB_EXTENSION_MIN_JSON, JSDELIVR_EXTENSION_MIN_JSON]
+    const url = ref(GITHUB_EXTENSION_PB);
+    const officialRepos = [GITHUB_EXTENSION_PB, JSDELIVR_EXTENSION_PB]
 
     onMounted(() => {
         isAndroid.value = !!navigator.userAgent.match(/android/i);
-        const urlParm = new URLSearchParams(window.location.search).get("url") || GITHUB_EXTENSION_MIN_JSON;
+        const urlParm = new URLSearchParams(window.location.search).get("url") || GITHUB_EXTENSION_PB;
         const encodedUrl = encodeURIComponent(urlParm);
 
         if (!officialRepos.includes(urlParm)) {
@@ -35,7 +35,7 @@ next: false
                 title: "Add extension repository",
             });
 
-            window.location.replace(`tachiyomi://add-repo?url=${encodedUrl}`);
+            window.location.replace(`mihon://extension-store?url=${encodedUrl}`);
         }
     });
 </script>
