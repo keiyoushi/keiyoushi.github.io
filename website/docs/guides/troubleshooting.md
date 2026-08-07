@@ -17,7 +17,7 @@ Encountering problems while trying to install or update extensions? Follow these
 
 1. Try restarting the app. There is a known bug where the app doesn't recognize newly-updated
 extensions.
-2. If the first step doesn't work, install [Split APK Installer](https://play.google.com/store/apps/details?id=com.aefyr.sai) from the Google Play Store and install your `.apk` from there.
+2. If the first step doesn't work, install [Split APK Installer](https://github.com/Aefyr/SAI/releases) from their GitHub Releases page and install your `.apk` using it.
 
 **Split APK Installer** helps show better error messages or may even successfully install your `.apk` without issue. Common errors include:
 
