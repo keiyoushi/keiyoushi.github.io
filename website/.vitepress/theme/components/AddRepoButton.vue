@@ -37,7 +37,7 @@ function handleAnalytics() {
       </p>
     </div>
   </div>
-  <div v-else>
+  <div>
     <div class="action-buttons">
       <a
         class="action-button primary"
