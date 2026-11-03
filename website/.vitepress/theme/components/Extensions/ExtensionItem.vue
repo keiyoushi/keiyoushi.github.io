@@ -46,6 +46,7 @@ function handleAnalytics(apkUrl: string) {
     </div>
     <Badge :type="warning.type" :text="`${warning.label} · ${item.versionName}`" :title="warning.title" />
     <a
+      v-if="item.apkUrl"
       :href="item.apkUrl"
       class="extension-download"
       title="Download APK"
