@@ -48,7 +48,7 @@ const { data: groups, isLoading, isError, error } = useExtensionsRepositoryQuery
 					id: source.id,
 					name: source.name,
 					language: lang,
-					homeUrl: source.homeUrl,
+					homeUrl: source.homeUrl ?? "",
 					mirrorUrls: source.mirrorUrls ?? [],
 					extName: ext.name,
 					packageName: ext.packageName,
