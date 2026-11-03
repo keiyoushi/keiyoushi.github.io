@@ -8,6 +8,7 @@ import { ElLoading } from "element-plus";
 
 import { nextTick, onMounted, reactive, ref, watch, computed } from "vue";
 import { simpleLangName } from "../../utils/languages";
+import { allowedDownloadUrl } from "../../utils/urls";
 import useExtensionsRepositoryQuery from "../../queries/useExtensionsRepositoryQuery";
 import { ContentWarning } from "../../queries/useExtensionsRepositoryQuery";
 import ExtensionFilters from "./ExtensionFilters.vue";
@@ -35,7 +36,7 @@ export interface SourceGroupData {
 	items: SourceRow[]
 }
 
-const { data: groups, isLoading } = useExtensionsRepositoryQuery({
+const { data: groups, isLoading, isError, error } = useExtensionsRepositoryQuery({
 	select: (response) => {
 		const groupsMap = new Map<string, SourceRow[]>()
 
@@ -52,7 +53,7 @@ const { data: groups, isLoading } = useExtensionsRepositoryQuery({
 					extName: ext.name,
 					packageName: ext.packageName,
 					iconUrl: ext.resources.iconUrl,
-					apkUrl: ext.resources.apkUrl,
+					apkUrl: allowedDownloadUrl(ext.resources.apkUrl),
 					versionName: ext.versionName,
 					contentWarning: ext.contentWarning,
 				}
@@ -173,6 +174,15 @@ watch([isLoading, loadingInstance], async ([newIsLoading]) => {
 		:groups="groups ?? []"
 	/>
 	<div class="extensions">
+		<div v-if="isError" class="extensions-error custom-block danger">
+			<p class="custom-block-title">
+				Couldn't load the extension list
+			</p>
+			<p>
+				Please try again later.
+				<code v-if="error">{{ error.message }}</code>
+			</p>
+		</div>
 		<ExtensionList v-if="!isLoading" :groups="filteredGroups" />
 	</div>
 </template>
