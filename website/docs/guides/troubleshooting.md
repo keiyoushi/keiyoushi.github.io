@@ -33,6 +33,21 @@ settings will be lost.
 This error points to a corrupted `.apk`. Try redownloading the `.apk`.
 :::
 
+## Keiyoushi Runtime
+Some extensions need the [Keiyoushi Runtime](/runtime) installed.
+
+::: details `Keiyoushi Runtime isn't installed or didn't load.`
+Install it by following the [Keiyoushi Runtime guide](/runtime).
+
+If it is installed but didn't load, go to <nav to="extensions"> and trust it. A downloaded
+Keiyoushi Runtime is untrusted until you add its store or tap **Trust**. Also make sure it is
+up to date.
+:::
+
+::: details `Update Keiyoushi Runtime (installed X; this source needs ...)`
+The source needs a newer Keiyoushi Runtime. Update it from <nav to="extensions">, or install the
+latest release from the [Keiyoushi Runtime guide](/runtime).
+:::
 
 ## WebView
 

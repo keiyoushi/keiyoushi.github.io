@@ -8,6 +8,16 @@ import { GITHUB_EXTENSION_PB } from "../../config/constants";
 import { onMounted, ref } from "vue";
 import useMihonVersionQuery from "../queries/useMihonVersionQuery";
 
+const props = withDefaults(defineProps<{
+  url?: string
+  analyticsPath?: string
+  analyticsTitle?: string
+}>(), {
+  url: GITHUB_EXTENSION_PB,
+  analyticsPath: "/#add-to-tachiyomi",
+  analyticsTitle: "Add extension store",
+});
+
 const { data: mihonVersion } = useMihonVersionQuery();
 
 const isAndroid = ref(true);
@@ -18,8 +28,8 @@ onMounted(() => {
 
 function handleAnalytics() {
   window.goatcounter?.count?.({
-    path: "/#add-to-tachiyomi",
-    title: "Add extension store",
+    path: props.analyticsPath,
+    title: props.analyticsTitle,
   });
 }
 </script>
@@ -42,7 +52,7 @@ function handleAnalytics() {
       <a
         class="action-button"
         :class="!!isAndroid ? 'primary' : 'secondary'"
-        :href="`mihon://extension-store?url=${encodeURIComponent(GITHUB_EXTENSION_PB)}`"
+        :href="`mihon://extension-store?url=${encodeURIComponent(props.url)}`"
         @click="handleAnalytics"
       >
         <span class="text">Add store</span>

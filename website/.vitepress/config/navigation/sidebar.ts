@@ -5,6 +5,7 @@ import type { DefaultTheme } from 'vitepress';
 
 const sidebar: DefaultTheme.SidebarMulti = {
   '/add-repo': defaultSidebar(),
+  '/runtime': defaultSidebar(),
   '/extensions/': defaultSidebar(),
   '/docs/': defaultSidebar(),
 };
@@ -13,7 +14,8 @@ function defaultSidebar(): DefaultTheme.SidebarItem[] {
   return [
     {
       items: [
-        { text: 'Extensions', link: '/extensions/' }
+        { text: 'Extensions', link: '/extensions/' },
+        { text: 'Runtime', link: '/runtime' },
       ],
     },
     {
